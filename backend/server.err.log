@@ -1,0 +1,31 @@
+Not Found: /
+[30/Aug/2025 10:31:48] "GET / HTTP/1.1" 404 3310
+Not Found: /favicon.ico
+[30/Aug/2025 10:31:49] "GET /favicon.ico HTTP/1.1" 404 3361
+[30/Aug/2025 10:31:51] "GET /admin/ HTTP/1.1" 302 0
+[30/Aug/2025 10:31:51] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4160
+[30/Aug/2025 10:31:51] "GET /static/admin/css/login.css HTTP/1.1" 200 951
+[30/Aug/2025 10:31:59] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4327
+[30/Aug/2025 10:32:10] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4327
+[30/Aug/2025 10:32:46] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4331
+[30/Aug/2025 10:33:23] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4331
+[30/Aug/2025 10:33:36] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4331
+[30/Aug/2025 10:33:56] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4331
+[30/Aug/2025 10:34:03] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4331
+[30/Aug/2025 10:34:08] "GET /admin/ HTTP/1.1" 302 0
+[30/Aug/2025 10:34:08] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4160
+[30/Aug/2025 10:34:19] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4331
+Not Found: /
+[30/Aug/2025 10:34:38] "GET / HTTP/1.1" 404 3310
+[30/Aug/2025 10:34:41] "GET /admin/ HTTP/1.1" 302 0
+[30/Aug/2025 10:34:41] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4160
+[30/Aug/2025 10:34:53] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4331
+[30/Aug/2025 10:35:24] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4331
+[30/Aug/2025 10:35:24] "GET /static/admin/css/login.css HTTP/1.1" 304 0
+[30/Aug/2025 10:44:28] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4322
+[30/Aug/2025 10:44:28] "GET /static/admin/css/login.css HTTP/1.1" 304 0
+Not Found: /
+[30/Aug/2025 10:44:40] "GET / HTTP/1.1" 404 3310
+[30/Aug/2025 10:44:43] "GET /admin/ HTTP/1.1" 302 0
+[30/Aug/2025 10:44:43] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4160
+[30/Aug/2025 10:45:01] "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4322

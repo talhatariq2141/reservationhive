@@ -1,29 +1,30 @@
-from rest_framework import viewsets
-from .models import Property
-from .serializers import PropertySerializer
-from accounts.permissions import IsAdminOrVendor
-from accounts.models import Admin, Vendor
+# tenants/views.py
+from rest_framework import viewsets, permissions
+from .models import Property, PropertyImage, PremiumService
+from .serializers import PropertySerializer, PropertyImageSerializer, PremiumServiceSerializer
 
-class PropertyViewSet(viewsets.ModelViewSet):
-    serializer_class = PropertySerializer
-    permission_classes = [IsAdminOrVendor]
+class TenantScopedMixin:
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
-        # Admin: return ALL properties
-        if Admin.objects.filter(user=user).exists():
-            return Property.objects.all()
-        # Vendor: return ONLY their own properties
-        elif Vendor.objects.filter(user=user).exists():
-            vendor = Vendor.objects.get(user=user)
-            return Property.objects.filter(vendor=vendor)
-        # Fallback: return nothing
-        return Property.objects.none()
+        u = self.request.user
+        qs = super().get_queryset()
+        if hasattr(u, "is_platform_admin") and callable(u.is_platform_admin) and u.is_platform_admin():
+            return qs
+        return qs.filter(tenant=u.tenant)
 
     def perform_create(self, serializer):
-        user = self.request.user
-        if Vendor.objects.filter(user=user).exists():
-            vendor = Vendor.objects.get(user=user)
-            serializer.save(vendor=vendor)
-        else:
-            serializer.save()  # for admin, allow assigning any vendor (optional)
+        u = self.request.user
+        serializer.save(tenant=u.tenant)
+
+class PropertyViewSet(TenantScopedMixin, viewsets.ModelViewSet):
+    queryset = Property.objects.all().select_related("tenant")
+    serializer_class = PropertySerializer
+
+class PropertyImageViewSet(TenantScopedMixin, viewsets.ModelViewSet):
+    queryset = PropertyImage.objects.all().select_related("tenant","property")
+    serializer_class = PropertyImageSerializer
+
+class PremiumServiceViewSet(TenantScopedMixin, viewsets.ModelViewSet):
+    queryset = PremiumService.objects.all().select_related("tenant","property")
+    serializer_class = PremiumServiceSerializer

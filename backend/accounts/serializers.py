@@ -1,29 +1,17 @@
+# accounts/serializers.py
 from rest_framework import serializers
-from .models import Admin, Vendor, UserProfile
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from .models import UserProfile
+
+User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email']
-
-class AdminSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
-
-    class Meta:
-        model = Admin
-        fields = '__all__'
-
-class VendorSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
-
-    class Meta:
-        model = Vendor
-        fields = '__all__'
+        fields = ["id", "username", "email", "first_name", "last_name", "role", "tenant"]
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
-
     class Meta:
         model = UserProfile
-        fields = '__all__'
+        fields = ["id", "user", "address", "avatar_url", "created_at", "updated_at"]
+        read_only_fields = ["created_at", "updated_at"]

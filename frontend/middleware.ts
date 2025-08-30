@@ -4,18 +4,17 @@ import type { NextRequest } from "next/server"
 
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request })
-
   const { pathname } = request.nextUrl
 
-  // Admin area
-  if (pathname.startsWith("/admin")) {
+  // Protect admin area (except its login page)
+  if (pathname.startsWith("/admin") && !pathname.startsWith("/admin-login")) {
     if (!token || token.role !== "admin") {
       return NextResponse.redirect(new URL("/admin-login", request.url))
     }
   }
 
-  // Vendor area
-  if (pathname.startsWith("/vendor")) {
+  // Protect vendor area (except its login page)
+  if (pathname.startsWith("/vendor") && !pathname.startsWith("/vendor-login")) {
     if (!token || token.role !== "vendor") {
       return NextResponse.redirect(new URL("/vendor-login", request.url))
     }
