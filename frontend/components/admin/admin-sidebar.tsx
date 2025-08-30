@@ -430,7 +430,7 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
                     </span>
                    
                     </div>
-                  </div>
+          </div>
       </SidebarHeader>
       <SidebarContent>
         

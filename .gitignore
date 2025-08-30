@@ -1,0 +1,48 @@
+# --- Python / Django ---
+__pycache__/
+*.py[cod]
+*.sqlite3
+db.sqlite3
+*.egg-info/
+.venv/
+venv/
+env/
+ENV/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+media/            # keep user uploads out of git (optional)
+staticfiles/      # Django collectstatic output (optional)
+
+# --- Node / Next.js ---
+node_modules/
+.next/
+out/
+dist/
+coverage/
+pnpm-lock.yaml
+# include one lock file if you use it; otherwise ignore all:
+# package-lock.json
+# yarn.lock
+
+# --- OS/Editors ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Env / Secrets ---
+.env
+.env.*        # .env.development, .env.local, etc.
+*.key
+*.pem
+
+# --- Misc ---
+*.log
+*.tmp
+*.swp
+
+# --- Git LFS examples (if you enable LFS) ---
+# *.png filter=lfs diff=lfs merge=lfs -text
+# *.jpg filter=lfs diff=lfs merge=lfs -text

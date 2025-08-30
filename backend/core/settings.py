@@ -130,12 +130,26 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Karachi'
 
 USE_I18N = True
 
 USE_TZ = True
 
+
+
+
+CORS_ALLOWED_ORIGINS = [
+  *([o for o in os.getenv("CORS_ALLOWED_ORIGINS", "").split(",") if o] or ["http://localhost:3000"])
+]
+
+CORS_ALLOWED_CREDENTIALS = True
+
+REST_FRAMEWORK = {
+  "DEFAULT_AUTHENTICATION_CLASSES": [
+    "rest_framework_simplejwt.authentication.JWTAuthentication"
+  ],
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
@@ -147,13 +161,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-  *([o for o in os.getenv("CORS_ALLOWED_ORIGINS", "").split(",") if o] or ["http://localhost:3000"])
-]
 
-REST_FRAMEWORK = {
-  "DEFAULT_AUTHENTICATION_CLASSES": [
-    "rest_framework_simplejwt.authentication.JWTAuthentication"
-  ],
-}
 
